@@ -91,10 +91,20 @@ def collect_notes(vault: Path) -> list[NoteSummary]:
     return notes
 
 
-def build_title_index(notes: list[NoteSummary]) -> set[str]:
+def build_title_index(notes: list[NoteSummary], vault: Path) -> set[str]:
     titles = {note.title for note in notes}
     titles.update(note.path.with_suffix("").as_posix() for note in notes)
     titles.update(note.path.stem for note in notes)
+
+    for path in vault.rglob("*"):
+        if not path.is_file() or ".obsidian" in path.parts:
+            continue
+
+        relative_path = path.relative_to(vault).as_posix()
+        titles.add(relative_path)
+        titles.add(path.name)
+        titles.add(path.with_suffix("").name)
+
     return titles
 
 
@@ -138,7 +148,7 @@ def main() -> None:
         raise SystemExit(f"Vault not found: {vault}")
 
     notes = collect_notes(vault)
-    title_index = build_title_index(notes)
+    title_index = build_title_index(notes, vault)
     broken_links = unresolved_links(notes, title_index)
     inbound = inbound_counts(notes)
     missing_frontmatter = [note for note in notes if not note.has_frontmatter]
@@ -164,7 +174,8 @@ def main() -> None:
         target = vault / folder
         if not target.exists() or not target.is_dir():
             continue
-        count = len(list(target.rglob("*.md")))
+        pattern = "*" if folder == "attachments" else "*.md"
+        count = len([path for path in target.rglob(pattern) if path.is_file()])
         print(f"- {folder}: {count}")
 
     print_section("Needs Attention")
