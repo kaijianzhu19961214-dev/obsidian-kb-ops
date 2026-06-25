@@ -147,6 +147,7 @@ def main() -> None:
         for note in notes
         if not note.links and inbound.get(note.title, 0) == 0
         and "99_Templates" not in note.path.parts
+        and "90_Archive" not in note.path.parts
     ]
 
     print(f"# Obsidian KB Audit - {datetime.now().date().isoformat()}")
