@@ -1,23 +1,39 @@
 ---
-type: data_source
+title: "{{source_name}}"
+type: literature
 status: seed
-provider:
+created: {{date}}
+updated: {{date}}
+source:
+  - "{{url}}"
+provider: "{{provider}}"
+category:
 update_frequency:
-url:
+release_lag:
+unit:
 storage:
+confidence:
 tags:
+  - external-data
+  - data-source
 ---
 
 # {{source_name}}
 
-## 数据内容
+## 数据源概览
 
-## 更新频率
+## 更新频率与发布时间
 
-## 口径说明
+## 字段与口径
 
-## 存储位置
+## 原始文件/数据库位置
 
-## 对量化研究的用途
+## 研究用途
 
-## 待处理
+## 已知问题
+
+## 最近更新
+
+## 相关因子想法
+
+## 待确认

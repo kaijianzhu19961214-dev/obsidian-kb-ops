@@ -18,6 +18,32 @@ This repository should not duplicate the whole vault. Keep it focused on repeata
 - MOC maintenance
 - vault hygiene
 
+## Operating Cycle
+
+Use this repo as the control plane and keep the real notes in the vault.
+
+```text
+capture -> inbox triage -> resource/report/data-source notes -> MOC links -> weekly synthesis
+```
+
+Default cadence:
+
+| Cadence | Workflow | Output |
+|---|---|---|
+| Before changes | `workflows/operating_cycle.md` | Scope, safety gate, and execution order |
+| Daily | `workflows/inbox_triage.md` | Inbox review log and routing decisions |
+| On demand | `workflows/report_ingestion.md` | Copyright-safe report index or summary |
+| Weekly | `workflows/external_data_watch.md` | External data watch report |
+| Weekly | `workflows/weekly_synthesis.md` | Weekly synthesis note and next actions |
+
+Start with a read-only audit before changing the vault:
+
+```bash
+python3 scripts/obsidian_kb_audit.py --vault "/Users/zhukaijian/Documents/Obsidian Vault"
+```
+
+Then execute the relevant workflow in a small batch. Bulk moves, template rewrites, and MOC restructuring should be proposed first and applied only after the first batch looks correct.
+
 ## Common Prompts
 
 ```text
@@ -34,6 +60,10 @@ This repository should not duplicate the whole vault. Keep it focused on repeata
 
 ```text
 用 $obsidian-knowledge-base 更新 Quant Research MOC，把最近新增笔记挂到合适位置。
+```
+
+```text
+先运行 scripts/obsidian_kb_audit.py，只读巡检 vault，列出 Inbox、孤立笔记、缺 frontmatter、断链和本周复盘候选。
 ```
 
 ## Project Layout

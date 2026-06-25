@@ -1,16 +1,28 @@
 ---
-type: report_summary
+title: "{{title}}"
+type: literature
 status: draft
-source_type:
+created: {{date}}
+updated: {{date}}
+source:
+  - "{{url}}"
+source_type: report
+source_confidence:
+access_status:
 institution:
-author:
-date:
-url:
+authors:
+published:
 local_file:
+minio_uri:
+report_type:
 tags:
+  - quant
+  - research-report
 ---
 
 # {{title}}
+
+## Report Info
 
 ## 核心结论
 
@@ -18,10 +30,16 @@ tags:
 
 ## 因子/策略启发
 
+### 假设
+
+### 验证计划
+
 ## 需要的数据
 
 ## 可复现实验
 
 ## 风险与限制
+
+## Source
 
 ## 后续行动

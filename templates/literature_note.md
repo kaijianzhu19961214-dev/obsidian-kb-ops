@@ -1,25 +1,30 @@
 ---
-type: literature_note
+title: "{{title}}"
+type: literature
 status: draft
+created: {{date}}
+updated: {{date}}
+source:
+  - "{{url}}"
 authors:
-year:
+published:
+accessed: {{date}}
 doi:
-url:
+confidence:
 tags:
+  - type/literature
 ---
 
 # {{title}}
 
-## 研究问题
+## TL;DR
 
-## 方法
+## Key Points
 
-## 数据
+## Evidence
 
-## 主要结论
+## My Notes
 
-## 和量化研究的关系
+## Action Items
 
-## 可复现实验
-
-## 待确认
+## To Confirm
